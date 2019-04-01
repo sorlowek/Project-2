@@ -3,8 +3,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Citi Bike</title>
+  <title>Project 2</title>
 
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+  crossorigin="anonymous"></script>
+  
   <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css?family=Sanchez" rel="stylesheet">
 
@@ -18,11 +21,14 @@
   <link rel="stylesheet" href="css/leaflet.extra-markers.min.css">
 
   <!-- Our CSS -->
-  <link rel="stylesheet" type="text/css" href="../static/css/stylecopy.css">
+  <link rel="stylesheet" type="text/css" href="../static/css/style.css">
+  
+ 
+
 </head>
 
 <body>
-    
+   
   <!-- The div that holds our map -->
   <div id="map-id"></div>
 
@@ -43,24 +49,26 @@
   <!-- API Key -->
   <script type="text/javascript" src="../static/js/config.js"></script>
 
-  <!-- Our JavaScript -->
   <script type="text/javascript" src="../static/js/app.js"></script>
   <div class="container">
-    <div class="row">
-      <div class="col-md-12 jumbotron text-center">
-        <h1>Census Data Dashboard</h1>
-        <p>Use the interactive charts below to explore the dataset</p>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-6">
-        <div class="well">
-          <h5>SELECT Place:</h5>
-          <select id="selDataset" onchange="optionChanged(this.value)"></select>
-        </div>
-      </div>  
-    </div>  
-  </div>
+   <div class="row">
+     <div class="col-md-12 jumbotron text-center">
+       <h1>Census Data Dashboard</h1>
+       <p>Use the interactive charts below to explore the dataset</p>
+     </div>
+   </div>
+   <div class="row">
+     <div class="col-md-6">
+       <div class="well">
+         <h5>SELECT Place:</h5>
+         <select id="selDataset" onchange="optionChanged(this.value)"></select>
+       </div>
+     </div>  
+   </div>  
+ </div>
+
+  <!-- Our JavaScript -->
+  
 </body>
 
 </html>
