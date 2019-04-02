@@ -18,26 +18,57 @@ function init() {
     const firstLat = placeNames[213].Latitude;
     const firstLong = placeNames[213].Longitude;
     getMap(firstPlace, firstLat, firstLong);
-    
+    income(firstPlace);
+    race(firstPlace);
+    age(firstPlace);
   });
 }
 
-// function income() {
-//   d3.json("/income/<yearIndex>").then((incomeData) => {
-//     var i;
-//     for (i=0; i < incomeData.length; i++) {
-//     }  
+function income(city) {
+  var cityIncomeYears = [];
+  var i;
+  for (i=5; i < 18; i++){
+    d3.json("/income/"+ i).then((incomeData) => {
+    cityIncome = incomeData.find(d => d.Geography == city);
+    cityIncomeYears.push(cityIncome);
+    }); 
+  };  
+    
+  console.log(cityIncomeYears);  
+}
 
+function age(city)  {
+  var cityAgeYears = [];
+  var i;
+  for (i=5; i < 18; i++){
+    d3.json("/age/"+ i).then((ageData) => {
+    cityAge = ageData.find(d => d.Geography == city);
+    cityAgeYears.push(cityAge);
+    }); 
+  };  
+  console.log(cityAgeYears);
+}
 
-//   });
-// }
-
+function race(city)  {
+  var cityRaceYears = [];
+  var i;
+  for (i=5; i < 18; i++){
+    d3.json("/race/"+ i).then((raceData) => {
+    cityRace = raceData.find(d => d.Geography == city);
+    cityRaceYears.push(cityRace);
+    }); 
+  };  
+  console.log(cityRaceYears);
+}
 
 function optionChanged(newPlace){
   thisPlace = globalPlaceNames.find(d => d.Geography == newPlace);
 
   deleteMap();
   getMap(thisPlace.Geography, thisPlace.Latitude, thisPlace.Longitude);
+  income(thisPlace.Geography);
+  age(thisPlace.Geography);
+  race(thisPlace.Geography);
 } 
 
 function deleteMap() {

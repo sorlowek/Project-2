@@ -89,24 +89,22 @@ def age(yearIndex):
     x = int(yearIndex)
     df = yearList[x]
     results = df[['Geography', 'Total; Estimate; AGE - Under 5 years',
-            'Total; Estimate; AGE - 5 to 9 years',
-            'Total; Estimate; AGE - 10 to 14 years',
-            'Total; Estimate; AGE - 15 to 19 years',
-            'Total; Estimate; AGE - 20 to 24 years',
-            'Total; Estimate; AGE - 25 to 29 years',
-            'Total; Estimate; AGE - 30 to 34 years',
-            'Total; Estimate; AGE - 35 to 39 years',
-            'Total; Estimate; AGE - 40 to 44 years',
-            'Total; Estimate; AGE - 45 to 49 years',
-            'Total; Estimate; AGE - 50 to 54 years',
-            'Total; Estimate; AGE - 55 to 59 years',
-            'Total; Estimate; AGE - 60 to 64 years',
-            'Total; Estimate; AGE - 65 to 69 years',
-            'Total; Estimate; AGE - 70 to 74 years',
-            'Total; Estimate; AGE - 75 to 79 years',
-            'Total; Estimate; AGE - 80 to 84 years',
-            'Total; Estimate; AGE - 85 years and over']]      
-    
+        'Total; Estimate; AGE - 5 to 9 years',
+        'Total; Estimate; AGE - 10 to 14 years',
+        'Total; Estimate; AGE - 15 to 19 years',
+        'Total; Estimate; AGE - 20 to 24 years',
+        'Total; Estimate; AGE - 25 to 29 years',
+        'Total; Estimate; AGE - 30 to 34 years',
+        'Total; Estimate; AGE - 35 to 39 years',
+        'Total; Estimate; AGE - 40 to 44 years',
+        'Total; Estimate; AGE - 45 to 49 years',
+        'Total; Estimate; AGE - 50 to 54 years',
+        'Total; Estimate; AGE - 55 to 59 years',
+        'Total; Estimate; AGE - 60 to 64 years',
+        'Total; Estimate; AGE - 65 to 69 years',
+        'Total; Estimate; AGE - 70 to 74 years',
+        'Total; Estimate; AGE - 80 to 84 years',
+        'Total; Estimate; AGE - 85 years and over']]  
     return results.to_json(orient = 'records')
 
 @app.route("/race/<yearIndex>")
