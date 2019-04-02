@@ -9,33 +9,34 @@ from sqlalchemy.orm import Session
 from sqlalchemy import create_engine
 
 from flask import Flask, jsonify, render_template
-from flask_sqlalchemy import SQLAlchemy
+#from flask_sqlalchemy import SQLAlchemy
+
+
+
+#app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///db/map_db.sqlite"
+
+
+engine = create_engine("sqlite:///db/map_db.sqlite")
 
 app = Flask(__name__)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///db/map_db.sqlite"
+#create loop
 
-db = SQLAlchemy(app)
-# reflect an existing database into a new model
-Base = automap_base()
-# reflect the tables
-Base.prepare(db.engine, reflect=True)
+test_df = pd.read_sql_query("select * from Y2005", engine)
+test_df = pd.read_sql_query("select * from Y2006", engine)
+test_df = pd.read_sql_query("select * from Y2007", engine)
+test_df = pd.read_sql_query("select * from Y2008", engine)
+test_df = pd.read_sql_query("select * from Y2009", engine)
+test_df = pd.read_sql_query("select * from Y2010", engine)
+test_df = pd.read_sql_query("select * from Y2011", engine)
+test_df = pd.read_sql_query("select * from Y2012", engine)
+test_df = pd.read_sql_query("select * from Y2013", engine)
+test_df = pd.read_sql_query("select * from Y2014", engine)
+test_df = pd.read_sql_query("select * from Y2015", engine)
+test_df = pd.read_sql_query("select * from Y2016", engine)
+test_df = pd.read_sql_query("select * from Y2017", engine)
 
-
-# Save references to each table
-Y2017 = Base.classes.Y2017
-Y2016 = Base.classes.Y2016
-Y2015 = Base.classes.Y2015
-Y2014 = Base.classes.Y2014
-Y2013 = Base.classes.Y2013
-Y2012 = Base.classes.Y2012
-Y2011 = Base.classes.Y2011
-Y2010 = Base.classes.Y2010
-Y2009 = Base.classes.Y2009
-Y2008 = Base.classes.Y2008
-Y2007 = Base.classes.Y2007
-Y2006 = Base.classes.Y2006
-Y2005 = Base.classes.Y2005
+print(test_df.head())
 
 
 @app.route("/")
@@ -48,10 +49,9 @@ def places():
 
     # Use Pandas to perform the sql query
     results = db.session.query(Y2005.GEOGRAPHY).all()
-    print(results)
 
     # Return a list of the column names (sample names)
-    return jsonify(results)    
+    return jsonify(results)
 
 if __name__ == "__main__":
     app.run()    
