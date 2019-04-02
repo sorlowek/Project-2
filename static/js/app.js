@@ -1,6 +1,7 @@
 
 var globalPlaceNames;
 
+
 function init() {
   d3.json("/places").then((placeNames) => {
     var i;
@@ -24,41 +25,47 @@ function init() {
   });
 }
 
-function income(city) {
-  var cityIncomeYears = [];
+async function income(city) {
+  let cityIncomeYears = [];
   var i;
   for (i=5; i < 18; i++){
-    d3.json("/income/"+ i).then((incomeData) => {
+    await d3.json("/income/"+ i).then((incomeData) => {
     cityIncome = incomeData.find(d => d.Geography == city);
     cityIncomeYears.push(cityIncome);
     }); 
   };  
-    
-  console.log(cityIncomeYears);  
+  console.log(cityIncomeYears[0]); 
+
 }
 
-function age(city)  {
+function extra(data){
+
+  data1 = data[0];
+  console.log(data1);
+};
+
+async function age(city)  {
   var cityAgeYears = [];
   var i;
   for (i=5; i < 18; i++){
-    d3.json("/age/"+ i).then((ageData) => {
+    await d3.json("/age/"+ i).then((ageData) => {
     cityAge = ageData.find(d => d.Geography == city);
     cityAgeYears.push(cityAge);
     }); 
   };  
-  console.log(cityAgeYears);
+  console.log(cityAgeYears[0]);
 }
 
-function race(city)  {
+async function race(city)  {
   var cityRaceYears = [];
   var i;
   for (i=5; i < 18; i++){
-    d3.json("/race/"+ i).then((raceData) => {
+    await d3.json("/race/"+ i).then((raceData) => {
     cityRace = raceData.find(d => d.Geography == city);
     cityRaceYears.push(cityRace);
     }); 
   };  
-  console.log(cityRaceYears);
+  console.log(cityRaceYears[0]);
 }
 
 function optionChanged(newPlace){
