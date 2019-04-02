@@ -1,5 +1,11 @@
 
 
+var globalPlaceNames;
+function recenterMap(lat, long) {
+
+  console.log(lat, long);
+
+}
 function init() {
   // Create the tile layer that will be the background of our map
       var lightmap = L.tileLayer("https://api.mapbox.com/styles/v1/mapbox/light-v9/tiles/256/{z}/{x}/{y}?access_token={accessToken}", {
@@ -21,21 +27,38 @@ function init() {
   
   
   // Grab a reference to the dropdown select element
-  
-  var selector = d3.select("#selDataset");
+ 
+
 
   // Use the list of sample names to populate the select options
   d3.json("/places").then((placeNames) => {
-    placeNames.forEach((place) => {
-      selector
+    var i;
+    for (i =0; i < placeNames.length; i++) {
+      place = placeNames[i];
+      console.log(placeNames[i]);
+      d3.select("#selDataset")  
         .append("option")
-        .text(place)
-        .property("value", place);
-    });
-
-   
+        .text(place.Geography)
+        .property("value", place.Geography);
+    };
+    globalPlaceNames = placeNames;
     
+    const firstPlace = placeNames[0].Geography;
+    const firstLat = placeNames[0].Latitude;
+    const firstLong = placeNames[0].Longitude;
+    recenterMap(firstLat, firstLong);
+    // marker(firstPlace);
   });
 }
+
+function optionChanged(newPlace)
+ {
+  thisPlace = globalPlaceNames.find(d => d.Geography == newPlace);
+
+  console.log(thisPlace);
+  
+  // recenterMap(newPlace.Latitude, newPlace.Longitude);
+  //  marker(newPlace);
+} 
 
 init();
