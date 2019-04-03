@@ -49,7 +49,15 @@ async function income(city) {
     Over200.push(cityIncomeYears[i]["Households; Estimate; $200,000 or more"]);
     }
   } 
-  console.log(Between10_15);
+  
+  var variables = ["<$10,000", "$10,000 to $14,999", "$15,000 to $24,999","$25,000 to $34,999","$35,000 to $49,999",
+  "$50,000 to $74,999","$75,000 to $99,999","$100,000 to $149,999", "$150,000 to $199,999","$200,000 or more"];
+  var data = [lessThan10k, Between10_15, Between15_20, Between20_35, Between35_49, Between50_75, Between75_100, Between100_150,
+  Between150_200, Over200];
+
+  buildCharts(data, variables);
+  console.log(Between10_15); 
+  
 }
 
 async function age(city)  {
@@ -116,6 +124,16 @@ async function age(city)  {
 
     }
   }
+  var data = [Age5to9, Age10to14, Age15to19, Age20to24, Age25to29, Age30to34, Age35to39,
+    Age40to44, Age45to49, Age50to54,Age55to59, Age60to64, Age65to69, Age70to74,
+    Age80to84, Age85andover];
+
+var variables = ["Ages 10-14", "Ages 15 -19", "Ages 20-24", "Ages 25-29", "Ages 30-34",
+        "Ages 35-39", "Ages 40-44", "Ages 45-49", "Ages 50-54", "Ages 55-59",
+        "Ages 60-64", "Ages 65-69", "Ages 70-74", "Ages 80-84", "Ages 85 and over"];
+  
+  buildCharts(data,variables);
+    
   console.log(Age20to24);
 }
 
@@ -156,6 +174,12 @@ async function race(city)  {
 
     }  
     }
+    var data = [whiteAlone,AfricanAmericanAlone, AmericanIndian, Asian, HawaiianPacific,
+      Other, TwoRaces];
+      
+    var variables = ["White", "Black", "AIndian", "Asian", "Hawaiin", "Other", "Two"];
+    buildCharts(data,variables);
+    console.log(whiteAlone);
     
 }
 
@@ -225,6 +249,84 @@ function init() {
   });
 }
 
+
+
+  function buildCharts(data,variables){
+
+    // svg container
+    var height = 600;
+    var width = 1000;
+    
+    // margins
+    var margin = {
+      top: 50,
+      right: 50,
+      bottom: 50,
+      left: 50
+    };
+    
+    // chart area minus margins
+    var chartHeight = height - margin.top - margin.bottom;
+    var chartWidth = width - margin.left - margin.right;
+    
+    // create svg container
+    var svg = d3.select("body").append("svg")
+        .attr("height", height)
+        .attr("width", width);
+    
+    // shift everything over by the margins
+    var chartGroup = svg.append("g")
+        .attr("transform", `translate(${margin.left}, ${margin.top})`);
+    
+    //scale y to chart height
+    var yScale = d3.scaleLinear()
+        .domain([0, d3.max(data[1])])
+        .range([chartHeight, 0]);
+    
+    // scale x to chart width
+    var xScale = d3.scaleBand()
+        .domain(variables)
+        .range([0, chartWidth])
+        .padding(0.1);
+    
+    // create axes
+    var yAxis = d3.axisLeft(yScale);
+    var xAxis = d3.axisBottom(xScale);
+    
+    // set x to the bottom of the chart
+    chartGroup.append("g")
+        .attr("transform", `translate(0, ${chartHeight})`)
+        .call(xAxis);
+    
+    // set y to the y axis
+    chartGroup.append("g")
+        .call(yAxis);
+    
+    // Create the rectangles using data binding
+    var barsGroup = chartGroup.selectAll("rect")
+        .data(data[1])
+        .enter()
+        .append("rect")
+        .attr("x", (d, i) => xScale(variables[i]))
+        .attr("y", d => yScale(d))
+        .attr("width", xScale.bandwidth())
+        .attr("height", d => chartHeight - yScale(d))
+        .attr("fill", "green");
+    
+    // Create the event listeners with transitions
+    barsGroup.on("mouseover", function() {
+      d3.select(this)
+                .transition()
+                .duration(500)
+                .attr("fill", "red");
+    })
+        .on("mouseout", function() {
+          d3.select(this)
+                .transition()
+                .duration(500)
+                .attr("fill", "green");
+        });
+      }
 
 init();
 
