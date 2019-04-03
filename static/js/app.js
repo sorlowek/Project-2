@@ -2,28 +2,7 @@
 var globalPlaceNames;
 
 
-function init() {
-  d3.json("/places").then((placeNames) => {
-    var i;
-    for (i =0; i < placeNames.length; i++) {
-      place = placeNames[i];
-      
-      d3.select("#selDataset")  
-        .append("option")
-        .text(place.Geography)
-        .property("value", place.Geography);
-    };
-    globalPlaceNames = placeNames;
 
-    const firstPlace = placeNames[213].Geography;
-    const firstLat = placeNames[213].Latitude;
-    const firstLong = placeNames[213].Longitude;
-    getMap(firstPlace, firstLat, firstLong);
-    income(firstPlace);
-    race(firstPlace);
-    age(firstPlace);
-  });
-}
 
 async function income(city) {
   let cityIncomeYears = [];
@@ -177,7 +156,7 @@ async function race(city)  {
 
     }  
     }
-    console.log(whiteAlone);
+    
 }
 
 function optionChanged(newPlace){
@@ -204,16 +183,46 @@ function getMap(place, lat, long) {
   });
 
   //Create a map centered on US 
-  
+  var marker = L.marker([lat, long])
+  .bindPopup("<h3>" + place + "<h3>");
+
   var map = L.map("map-id", {
     center: [lat, long],
-    zoom: 6,   
+    zoom: 6,  
+    layers: marker 
     });
+
+  
+
+  // Add the marker to the bikeMarkers array
+  
 
   
 lightmap.addTo(map);
 
 
+}
+function init() {
+  d3.json("/places").then((placeNames) => {
+    var i;
+    for (i =0; i < placeNames.length; i++) {
+      place = placeNames[i];
+      
+      d3.select("#selDataset")  
+        .append("option")
+        .text(place.Geography)
+        .property("value", place.Geography);
+    };
+    globalPlaceNames = placeNames;
+
+    const firstPlace = placeNames[213].Geography;
+    const firstLat = placeNames[213].Latitude;
+    const firstLong = placeNames[213].Longitude;
+    getMap(firstPlace, firstLat, firstLong);
+    income(firstPlace);
+    race(firstPlace);
+    age(firstPlace);
+  });
 }
 
 
