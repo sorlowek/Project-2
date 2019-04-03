@@ -34,15 +34,44 @@ async function income(city) {
     cityIncomeYears.push(cityIncome);
     }); 
   };  
-  console.log(cityIncomeYears[0]); 
-
+  //console.log(cityIncomeYears.length); 
+  var lessThan10k = [];
+  var Between10_15 = [];
+  var Between15_20= [];
+  var Between20_35= [];
+  var Between35_49= [];
+  var Between50_75= [];
+  var Between75_100= [];
+  var Between100_150= [];
+  var Between150_200= [];
+  var Over200 =[];
+  for (i =0; i < cityIncomeYears.length; i++) {
+    if (i < 5) {
+    lessThan10k.push(cityIncomeYears[i]["Households; Estimate; Total - Less than $10,000"]);
+    Between10_15.push(cityIncomeYears[i]["Households; Estimate; Total - $10,000 to $14,999"]);
+    Between15_20.push(cityIncomeYears[i]["Households; Estimate; Total - $15,000 to $24,999"]);
+    Between20_35.push(cityIncomeYears[i]["Households; Estimate; Total - $25,000 to $34,999"]);
+    Between35_49.push(cityIncomeYears[i]["Households; Estimate; Total - $35,000 to $49,999"]);
+    Between50_75.push(cityIncomeYears[i]["Households; Estimate; Total - $50,000 to $74,999"]);
+    Between75_100.push(cityIncomeYears[i]["Households; Estimate; Total - $75,000 to $99,999"]);
+    Between100_150.push(cityIncomeYears[i]["Households; Estimate; Total - $100,000 to $149,999"]);
+    Between150_200.push(cityIncomeYears[i]["Households; Estimate; Total - $150,000 to $199,999"]);
+    Over200.push(cityIncomeYears[i]["Households; Estimate; Total - $200,000 or more"]);
+    } else {
+    lessThan10k.push(cityIncomeYears[i]["Households; Estimate; Less than $10,000"]); 
+    Between10_15.push(cityIncomeYears[i]["Households; Estimate; $10,000 to $14,999"]);
+    Between15_20.push(cityIncomeYears[i]["Households; Estimate; $15,000 to $24,999"]);
+    Between20_35.push(cityIncomeYears[i]["Households; Estimate; $25,000 to $34,999"]);
+    Between35_49.push(cityIncomeYears[i]["Households; Estimate; $35,000 to $49,999"]);
+    Between50_75.push(cityIncomeYears[i]["Households; Estimate; $50,000 to $74,999"]);
+    Between75_100.push(cityIncomeYears[i]["Households; Estimate; $75,000 to $99,999"]);
+    Between100_150.push(cityIncomeYears[i]["Households; Estimate; $100,000 to $149,999"]);
+    Between150_200.push(cityIncomeYears[i]["Households; Estimate; $150,000 to $199,999"]);
+    Over200.push(cityIncomeYears[i]["Households; Estimate; $200,000 or more"]);
+    }
+  } 
+  console.log(Between10_15);
 }
-
-function extra(data){
-
-  data1 = data[0];
-  console.log(data1);
-};
 
 async function age(city)  {
   var cityAgeYears = [];
@@ -53,7 +82,42 @@ async function age(city)  {
     cityAgeYears.push(cityAge);
     }); 
   };  
-  console.log(cityAgeYears[0]);
+  var Age5to9 =[];
+  var Age10to14 =[];
+  var Age15to19 =[];
+  var Age20to24 =[];
+  var Age25to29 =[];
+  var Age30to34 =[];
+  var Age35to39 =[];
+  var Age40to44 =[];
+  var Age45to49 =[];
+  var Age50to54 =[];
+  var Age55to59 =[];
+  var Age60to64 =[];
+  var Age65to69 =[];
+  var Age70to74 =[];
+  var Age80to84 =[];
+  var Age85andover =[];
+
+  for (i =0; i < cityAgeYears.length; i++) {
+    Age5to9.push(parseInt(cityAgeYears[i]["Total; Estimate; AGE - 5 to 9 years"]));
+    Age10to14.push(parseInt(cityAgeYears[i]["Total; Estimate; AGE - 10 to 14 years"]));
+    Age15to19.push(parseInt(cityAgeYears[i]["Total; Estimate; AGE - 15 to 19 years"]));
+    Age20to24.push(parseInt(cityAgeYears[i]["Total; Estimate; AGE - 20 to 24 years"]));
+    Age25to29.push(parseInt(cityAgeYears[i]["Total; Estimate; AGE - 25 to 29 years"]));
+    Age30to34.push(parseInt(cityAgeYears[i]["Total; Estimate; AGE - 30 to 34 years"]));
+    Age35to39.push(parseInt(cityAgeYears[i]["Total; Estimate; AGE - 35 to 39 years"]));
+    Age40to44.push(parseInt(cityAgeYears[i]["Total; Estimate; AGE - 40 to 44 years"]));
+    Age45to49.push(parseInt(cityAgeYears[i]["Total; Estimate; AGE - 45 to 49 years"]));
+    Age50to54.push(parseInt(cityAgeYears[i]["Total; Estimate; AGE - 50 to 54 years"]));
+    Age55to59.push(parseInt(cityAgeYears[i]["Total; Estimate; AGE - 55 to 59 years"]));
+    Age60to64.push(parseInt(cityAgeYears[i]["Total; Estimate; AGE - 60 to 64 years"]));
+    Age65to69.push(parseInt(cityAgeYears[i]["Total; Estimate; AGE - 65 to 69 years"]));
+    Age70to74.push(parseInt(cityAgeYears[i]["Total; Estimate; AGE - 65 to 69 years"]));
+    Age80to84.push(parseInt(cityAgeYears[i]["Total; Estimate; AGE - 65 to 69 years"]));
+    Age85andover.push(parseInt(cityAgeYears[i]["Total; Estimate; AGE - 65 to 69 years"]));
+  }
+  console.log(Age30to34);
 }
 
 async function race(city)  {
@@ -65,7 +129,36 @@ async function race(city)  {
     cityRaceYears.push(cityRace);
     }); 
   };  
-  console.log(cityRaceYears[0]);
+  console.log(cityRaceYears.length);
+  var whiteAlone = [];
+  var AfricanAmericanAlone = [];
+  var AmericanIndian =[];
+  var Asian = [];
+  var HawaiianPacific = [];
+  var Other = [];
+  var TwoRaces = [];
+  for (i = 0; i < cityRaceYears.length; i++) {
+    if (i <10){
+      whiteAlone.push(parseInt(cityRaceYears[i]['Estimate; White alone']));
+      AfricanAmericanAlone.push(parseInt(cityRaceYears[i]['Estimate; Black or African American alone']));
+      AmericanIndian.push(parseInt(cityRaceYears[i]['Estimate; American Indian and Alaska Native alone']));
+      Asian.push(parseInt(cityRaceYears[i]['Estimate; Asian alone']));
+      HawaiianPacific.push(parseInt(cityRaceYears[i]['Estimate; Native Hawaiian and Other Pacific Islander alone']));
+      Other.push(parseInt(cityRaceYears[i]['Estimate; Some other race alone']));
+      Other.push(parseInt(cityRaceYears[i]['Estimate; Some other race alone']));
+      TwoRaces.push(parseInt(cityRaceYears[i]['Estimate; Two or more races:']));
+    } else {
+      whiteAlone.push(parseInt(cityRaceYears[i]['Estimate; Total: - White alone']));
+      AfricanAmericanAlone.push(parseInt(cityRaceYears[i]['Estimate; Total: - Black or African American alone']));
+      AmericanIndian.push(parseInt(cityRaceYears[i]['Estimate; Total: - American Indian and Alaska Native alone']));
+      Asian.push(parseInt(cityRaceYears[i]['Estimate; Total: - Asian alone']));
+      HawaiianPacific.push(parseInt(cityRaceYears[i]['Estimate; Total: - Native Hawaiian and Other Pacific Islander alone']));
+      Other.push(parseInt(cityRaceYears[i]['Estimate; Total: - Some other race alone']));
+      TwoRaces.push(parseInt(cityRaceYears[i]['Estimate; Total: - Two or more races:']));
+
+    }  
+    }
+    console.log(HawaiianPacific);
 }
 
 function optionChanged(newPlace){
@@ -106,3 +199,6 @@ lightmap.addTo(map);
 
 
 init();
+
+
+
