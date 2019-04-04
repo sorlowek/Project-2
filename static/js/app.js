@@ -114,8 +114,8 @@ var yearListDicts;
 
 
     // svg container
-    var height = 600;
-    var width = 1000;
+    var height = 300;
+    var width = 500;
     
     // margins
     var margin = {
@@ -130,7 +130,7 @@ var yearListDicts;
     var chartWidth = width - margin.left - margin.right;
     
     // create svg container
-    var svg = d3.select("body").append("svg")
+    var svg = d3.select("#right").append("svg")
         .attr("height", height)
         .attr("width", width);
     
@@ -151,12 +151,17 @@ var yearListDicts;
     
     // create axes
     var yAxis = d3.axisLeft(yScale);
-    var xAxis = d3.axisBottom(xScale);
+    var xAxis = d3.axisBottom(xScale)
+    
     
     // set x to the bottom of the chart
     chartGroup.append("g")
         .attr("transform", `translate(0, ${chartHeight})`)
-        .call(xAxis);
+        .call(xAxis)
+          .selectAll("text")  
+          .style("text-anchor", "end")
+          .attr("transform", "rotate(-65)");
+
     
     // set y to the y axis
     chartGroup.append("g")
@@ -166,7 +171,8 @@ var yearListDicts;
         .attr("font-size", "16x")
         .attr("fill", "black")
         .attr("text-anchor", "middle")
-        .text(title);
+      
+          
     // Create the rectangles using data binding
     
     var barsGroup = chartGroup.selectAll("rect")
@@ -177,7 +183,7 @@ var yearListDicts;
         .attr("y", d => yScale(d))
         .attr("width", xScale.bandwidth())
         .attr("height", d => chartHeight - yScale(d))
-        .attr("fill", "green");
+        .attr("fill", "#112d32");
     
   
 
@@ -186,13 +192,13 @@ var yearListDicts;
       d3.select(this)
                 .transition()
                 .duration(500)
-                .attr("fill", "red");
+                .attr("fill", "#112d32");
     })
         .on("mouseout", function() {
           d3.select(this)
                 .transition()
                 .duration(500)
-                .attr("fill", "green");
+                .attr("fill", "#112d32");
         });
        
       }

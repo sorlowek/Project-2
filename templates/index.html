@@ -12,14 +12,17 @@
  
     <!-- Anime Js JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.2.0/anime.js"></script>
-  <!-- Leaflet CSS -->
+  
+    <!-- Leaflet CSS  <link rel="stylesheet" href="../leaflet/leaflet.css" />
+  <script src="../leaflet/leaflet.js"></script>-->
+  
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.3/dist/leaflet.css"
   integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
   crossorigin=""/>
 
 
   <!-- Our CSS -->
-  <link rel="stylesheet" type="text/css" href="../static/css/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="../static/css/sample.css">
   
 
 
@@ -50,7 +53,7 @@
    <div class="row">
      <div class="col-md-12 jumbotron text-center">
        <h1>Census Data Dashboard</h1>
-       <p>Use the interactive charts below to explore the dataset</p>
+       <p>Explore population change over time in cities across the United States according to race, income and age</p>
      </div>
    </div>
    <div class="row">
@@ -58,6 +61,8 @@
        <div class="well">
          <h5>CHOOSE LOCATION:</h5>
          <select id="selDataset" onchange="optionChanged(this.value)"></select>
+         <br>
+         <br>
          <h5>Choose Year</h5>
          <select id="selYear" onchange="optionChanged2(this.value)"></select>
        </div>
@@ -66,8 +71,12 @@
  </div>
 
   <!-- The div that holds our map -->
-  <div id="map-id"></div>
-
+  <div class="wrapper">
+      <div class = "left" >
+          <div id="map-id"></div>
+      </div> 
+      <div id = "right" >
+          <div id="titles" >Race, Income, Age: </div>
 
   <!-- Our JavaScript -->
   
