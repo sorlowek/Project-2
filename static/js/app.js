@@ -128,7 +128,7 @@ async function age(city)  {
     Age40to44, Age45to49, Age50to54,Age55to59, Age60to64, Age65to69, Age70to74,
     Age80to84, Age85andover];
 
-var variables = ["Ages 10-14", "Ages 15 -19", "Ages 20-24", "Ages 25-29", "Ages 30-34",
+var variables = ["Ages 5-9", "Ages 10-14", "Ages 15 -19", "Ages 20-24", "Ages 25-29", "Ages 30-34",
         "Ages 35-39", "Ages 40-44", "Ages 45-49", "Ages 50-54", "Ages 55-59",
         "Ages 60-64", "Ages 65-69", "Ages 70-74", "Ages 80-84", "Ages 85 and over"];
   
@@ -177,7 +177,7 @@ async function race(city)  {
     var data = [whiteAlone,AfricanAmericanAlone, AmericanIndian, Asian, HawaiianPacific,
       Other, TwoRaces];
       
-    var variables = ["White", "Black", "AIndian", "Asian", "Hawaiin", "Other", "Two"];
+    var variables = ["White", "Black", "Indian", "Asian", "Hawaiin", "Other", "Two"];
     buildCharts(data,variables);
     console.log(whiteAlone);
     
@@ -187,11 +187,16 @@ function optionChanged(newPlace){
   thisPlace = globalPlaceNames.find(d => d.Geography == newPlace);
 
   deleteMap();
+  deleteGraph();
   getMap(thisPlace.Geography, thisPlace.Latitude, thisPlace.Longitude);
   income(thisPlace.Geography);
   age(thisPlace.Geography);
   race(thisPlace.Geography);
 } 
+
+function deleteGraph() {
+  d3.selectAll("svg").remove();
+}
 
 function deleteMap() {
     d3.select("#map-id").remove();
@@ -252,7 +257,8 @@ function init() {
 
 
   function buildCharts(data,variables){
-
+    console.log(data[1]);
+    console.log(variables);
     // svg container
     var height = 600;
     var width = 1000;
@@ -280,7 +286,7 @@ function init() {
     
     //scale y to chart height
     var yScale = d3.scaleLinear()
-        .domain([0, d3.max(data[1])])
+        .domain([0, d3.max(data.map(x=> x[0]))])
         .range([chartHeight, 0]);
     
     // scale x to chart width
@@ -304,7 +310,7 @@ function init() {
     
     // Create the rectangles using data binding
     var barsGroup = chartGroup.selectAll("rect")
-        .data(data[1])
+        .data(data.map(x=> x[0]))
         .enter()
         .append("rect")
         .attr("x", (d, i) => xScale(variables[i]))
@@ -326,6 +332,7 @@ function init() {
                 .duration(500)
                 .attr("fill", "green");
         });
+       
       }
 
 init();
