@@ -104,7 +104,7 @@ var yearListDicts;
 
 
 
-  function buildCharts(data, variables, year){
+  function buildCharts(data, variables, year, title){
    
     var dataByYear;
     years = ["2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017"];
@@ -162,7 +162,11 @@ var yearListDicts;
     chartGroup.append("g")
         .call(yAxis);
     
-
+    chartGroup.append("text")
+        .attr("font-size", "16x")
+        .attr("fill", "black")
+        .attr("text-anchor", "middle")
+        .text(title);
     // Create the rectangles using data binding
     
     var barsGroup = chartGroup.selectAll("rect")

@@ -50,8 +50,8 @@ async function income(city, year) {
   "$50,000 to $74,999","$75,000 to $99,999","$100,000 to $149,999", "$150,000 to $199,999","$200,000 or more"];
   var data = [lessThan10k, Between10_15, Between15_20, Between20_35, Between35_49, Between50_75, Between75_100, Between100_150,
   Between150_200, Over200];
-
-  buildCharts(data, variables, year);
+  var title = "Income";  
+  buildCharts(data, variables, year, title);
   console.log(Between10_15); 
   
 }
@@ -128,7 +128,8 @@ var variables = ["Ages 5-9", "Ages 10-14", "Ages 15 -19", "Ages 20-24", "Ages 25
         "Ages 35-39", "Ages 40-44", "Ages 45-49", "Ages 50-54", "Ages 55-59",
         "Ages 60-64", "Ages 65-69", "Ages 70-74", "Ages 80-84", "Ages 85 and over"];
   
-  buildCharts(data,variables, year);
+  var title = "Age";      
+  buildCharts(data,variables, year, title);
     
   console.log(Age20to24);
 }
@@ -174,7 +175,8 @@ async function race(city, year)  {
       Other, TwoRaces];
       
     var variables = ["White", "Black", "Indian", "Asian", "Hawaiin", "Other", "Two"];
-    buildCharts(data,variables, year);
+    var title = "Race";
+    buildCharts(data,variables, year, title);
     console.log(whiteAlone);
     
 }
